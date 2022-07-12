@@ -524,10 +524,10 @@ public class FragmentSearch extends Fragment
 
         new NRPlaces.Builder()
                 .listener((PlacesListener) FragmentSearch.this)
-                .key("AIzaSyBL8azprV5drYS_omoLbg43OVXaCk-q4oc")
+                .key("API키")
                 .latlng(location.latitude, location.longitude)//현재 위치
                 .radius(500) //500 미터 내에서 검색
-                .type(PlaceType.HOSPITAL) //병원
+                .type(PlaceType.CAFE) //카페
                 .build()
                 .execute();
     }
