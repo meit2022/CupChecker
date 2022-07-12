@@ -2,7 +2,7 @@ package com.example.cg24;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
-
+import android.location.LocationListener;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -163,11 +163,51 @@ public class FragmentSearch extends Fragment
             }
         });
 
+        //수거함 button 기능추가
+        Button gather = (Button) layout.findViewById(R.id.gather);
+        //기능추가
+        gather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //중복 마커 제거
+                map.clear();
+
+                if (previous_marker != null)
+                    previous_marker.clear();
+
+                //수거함 위치
+                LatLng GATHER = new LatLng(37.54481, 126.9642);
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(GATHER);
+                markerOptions.title("수거함");
+                markerOptions.snippet("숙명여자대학교 프라임관");
+                map.addMarker(markerOptions);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(GATHER);
+                map.moveCamera(cameraUpdate);
+
+
+            }
+        });
+
+        //현재위치 button 기능추가
+        Button now = (Button) layout.findViewById(R.id.now);
+        //기능추가
+        now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.i(TAG, "dddd");
+
+                }
+        });
+
 
         mapFragment.getMapAsync(this);
         return layout;
 
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -227,14 +267,12 @@ public class FragmentSearch extends Fragment
 
         getDeviceLocation();
 
-        //수거함 위치
-       LatLng SEOUL = new LatLng(37.54481, 126.9642);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(SEOUL);
-        markerOptions.title("수거함");
-        markerOptions.snippet("숙명여자대학교 프라임관");
-        map.addMarker(markerOptions);
+
     }
+
+
+
+
 
     private void updateLocationUI() {
         if (map == null) {
@@ -498,11 +536,7 @@ public class FragmentSearch extends Fragment
 
                 }
 
-                //중복 마커 제거
-                HashSet<Marker> hashSet = new HashSet<Marker>();
-                hashSet.addAll(previous_marker);
-                previous_marker.clear();
-                previous_marker.addAll(hashSet);
+
 
             }
         });
