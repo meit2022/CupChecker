@@ -226,6 +226,14 @@ public class FragmentSearch extends Fragment
         updateLocationUI();
 
         getDeviceLocation();
+
+        //수거함 위치
+       LatLng SEOUL = new LatLng(37.54481, 126.9642);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(SEOUL);
+        markerOptions.title("수거함");
+        markerOptions.snippet("숙명여자대학교 프라임관");
+        map.addMarker(markerOptions);
     }
 
     private void updateLocationUI() {
@@ -257,6 +265,8 @@ public class FragmentSearch extends Fragment
         markerOptions.draggable(true);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         currentMarker = map.addMarker(markerOptions);
+
+
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 15);
         map.moveCamera(cameraUpdate);
