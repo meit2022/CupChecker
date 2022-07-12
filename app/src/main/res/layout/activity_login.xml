@@ -17,7 +17,7 @@
         android:layout_gravity="center"
         android:textSize="50dp"
         android:textColor="#2FA599"
-        android:text="CG24?"/>
+        android:text="CG24"/>
 
     <Button
         android:layout_gravity="center"
