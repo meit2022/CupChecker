@@ -76,7 +76,7 @@ public class FragmentSearch extends Fragment
     private FusedLocationProviderClient mFusedLocationProviderClient; // Deprecated된 FusedLocationApi를 대체
     private LocationRequest locationRequest;
     private Location mCurrentLocatiion;
-    private final LatLng mDefaultLocation = new LatLng(37.56, 126.97);
+    private final LatLng mDefaultLocation = new LatLng(37.5454200, 126.9638920);
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
     private static final int UPDATE_INTERVAL_MS = 1000 * 60 * 1;  // 1분 단위 시간 갱신
@@ -196,8 +196,6 @@ public class FragmentSearch extends Fragment
             @Override
             public void onClick(View v) {
 
-                Log.i(TAG, "dddd");
-
                 }
         });
 
@@ -206,7 +204,6 @@ public class FragmentSearch extends Fragment
         return layout;
 
     }
-
 
 
     @Override
@@ -260,14 +257,9 @@ public class FragmentSearch extends Fragment
         map = googleMap;
 
         setDefaultLocation(); // GPS를 찾지 못하는 장소에 있을 경우 지도의 초기 위치가 필요함.
-
         getLocationPermission();
-
         updateLocationUI();
-
         getDeviceLocation();
-
-
     }
 
 
@@ -303,9 +295,6 @@ public class FragmentSearch extends Fragment
         markerOptions.draggable(true);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         currentMarker = map.addMarker(markerOptions);
-
-
-
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 15);
         map.moveCamera(cameraUpdate);
     }
@@ -533,11 +522,7 @@ public class FragmentSearch extends Fragment
                     markerOptions.snippet(markerSnippet);
                     Marker item = map.addMarker(markerOptions);
                     previous_marker.add(item);
-
                 }
-
-
-
             }
         });
 
