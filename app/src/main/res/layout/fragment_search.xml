@@ -11,52 +11,56 @@
         android:id="@+id/sv_location"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="50dp"
-        android:elevation="5dp"
-        android:iconifiedByDefault="false"
-        android:background="@color/white"
-        android:queryHint="위치 기반으로 검색" />
-
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="59dp"
-        android:text="카페" />
-
-    <Button
-        android:id="@+id/now"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
-        android:text="현재위치" />
-
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="위치 기반으로 검색" />
 
     <Button
-        android:id="@+id/gather"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="42dp"
-        android:text="수거함 위치" />
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="59dp"
+            android:text="카페" />
 
-    <fragment
+        <Button
+            android:id="@+id/now"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="63dp"
+            android:text="현재위치" />
+
+
+        <Button
+            android:id="@+id/gather"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="62dp"
+            android:layout_marginEnd="42dp"
+            android:text="수거함 위치" />
+
+    <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
         android:id="@+id/google_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="-4dp"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"
+        map:mapId="CG24" />
+
+
 
 </RelativeLayout>
