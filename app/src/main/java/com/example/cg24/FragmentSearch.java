@@ -48,17 +48,23 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.PlaceType;
@@ -80,7 +86,7 @@ public class FragmentSearch extends Fragment
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
     private static final int UPDATE_INTERVAL_MS = 1000 * 60 * 1;  // 1분 단위 시간 갱신
-    private static final int FASTEST_UPDATE_INTERVAL_MS = 1000 * 30 ; // 30초 단위로 화면 갱신
+    private static final int FASTEST_UPDATE_INTERVAL_MS = 1000 * 60 ; // 30초 단위로 화면 갱신
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
     private static int AUTOCOMPLETE_REQUEST_CODE = 200;
@@ -195,9 +201,47 @@ public class FragmentSearch extends Fragment
         now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                onLocationChanged(mCurrentLocatiion);
 
-                }
+                map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocatiion.getLatitude(),mCurrentLocatiion.getLongitude())));
+            }
         });
+
+
+
+// Initialize the AutocompleteSupportFragment.
+       /* AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+               getActivity().getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);*/
+
+        // Specify the types of place data to return.
+        //autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        // Set up a PlaceSelectionListener to handle the response.
+        /*Objects.requireNonNull(autocompleteFragment).setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+            }
+
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+*/
+
+
+        // Set the fields to specify which types of place data to
+        // return after the user has made a selection.
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+
+        // Start the autocomplete intent.
+       /* Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+                .build(fields);
+        startActivityForResult(intent, 1);*/
 
 
         mapFragment.getMapAsync(this);
@@ -206,6 +250,23 @@ public class FragmentSearch extends Fragment
     }
 
 
+    public void onLocationChanged(Location location) {
+
+        LatLng currentPosition
+                = new LatLng( location.getLatitude(), location.getLongitude());
+
+
+//        Log.d(TAG, "onLocationChanged : ");
+
+        String markerTitle = getCurrentAddress(currentPosition);
+        String markerSnippet = "위도:" + location.getLatitude()
+                + " 경도:" + location.getLongitude();
+
+        //현재 위치에 마커 생성하고 이동
+        setCurrentLocation(location, markerTitle, markerSnippet);
+
+        mCurrentLocatiion = location;
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
@@ -233,8 +294,8 @@ public class FragmentSearch extends Fragment
 
         //mLocationRequest=new LocationRequest.Builder(long intervalMillis);
 
-        locationRequest = new LocationRequest()
-                .setInterval(UPDATE_INTERVAL_MS) // 위치가 Update 되는 주기
+       locationRequest = new LocationRequest()
+               // .setInterval(UPDATE_INTERVAL_MS) // 위치가 Update 되는 주기
                 .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS); // 위치 획득후 업데이트되는 주기
         //.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY) // 정확도를 최우선적으로 고려
         LocationSettingsRequest.Builder builder =
@@ -256,10 +317,17 @@ public class FragmentSearch extends Fragment
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
+
         setDefaultLocation(); // GPS를 찾지 못하는 장소에 있을 경우 지도의 초기 위치가 필요함.
         getLocationPermission();
         updateLocationUI();
         getDeviceLocation();
+
+        setGoogleMap(googleMap);
+    }
+
+    public void setGoogleMap(GoogleMap m){
+        map=m;
     }
 
 
@@ -541,10 +609,12 @@ public class FragmentSearch extends Fragment
         if (previous_marker != null)
             previous_marker.clear();//지역정보 마커 클리어
 
+        onLocationChanged(mCurrentLocatiion);
+
         new NRPlaces.Builder()
                 .listener((PlacesListener) FragmentSearch.this)
                 .key("API키")
-                .latlng(location.latitude, location.longitude)//현재 위치
+                .latlng(mCurrentLocatiion.getLatitude(), mCurrentLocatiion.getLongitude())//현재 위치
                 .radius(500) //500 미터 내에서 검색
                 .type(PlaceType.CAFE) //카페
                 .build()
