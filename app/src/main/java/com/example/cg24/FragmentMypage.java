@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,8 +49,9 @@ public class FragmentMypage extends Fragment {
 
             TextView nickname=(TextView)rootView.findViewById(R.id.loginNickname);
             nickname.setText(user.getDisplayName());
-            TextView useremail=(TextView)rootView.findViewById(R.id.loginEmail);
-            useremail.setText(user.getEmail());
+            // LinearLayout mypage_layout2=(LinearLayout)rootView.findViewById(R.id.mypage_layout2);
+            // ImageView mypage_user_img=(ImageView)rootView.findViewById(R.id.mypage_user_img);
+            // mypage_layout2.bringChildToFront(mypage_user_img);
 
             iv = (ImageView) rootView.findViewById(R.id.qrcode);
 
@@ -64,7 +66,7 @@ public class FragmentMypage extends Fragment {
 
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try{
-                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,800,800);
+                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,600,600);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                 iv.setImageBitmap(bitmap);
