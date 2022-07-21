@@ -66,7 +66,7 @@ public class FragmentMypage extends Fragment {
 
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try{
-                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,600,600);
+                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,650,650);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                 iv.setImageBitmap(bitmap);

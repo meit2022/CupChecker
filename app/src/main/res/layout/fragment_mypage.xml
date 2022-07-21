@@ -14,15 +14,15 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:text="마이페이지"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:textColor="@android:color/black"
-        android:textSize="30sp"/>
+        android:textSize="35sp"/>
 
     <LinearLayout
         android:id="@+id/mypage_layout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/round_margin_green"
         android:orientation="vertical">
 
@@ -30,8 +30,8 @@
             android:id="@+id/mypage_user_img"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/userimg" />
 
         <LinearLayout
