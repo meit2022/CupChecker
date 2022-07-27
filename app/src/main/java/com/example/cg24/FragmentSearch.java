@@ -161,20 +161,30 @@ public class FragmentSearch extends Fragment
 
         //button 기능추가
         Button button = (Button) layout.findViewById(R.id.button);
+        //수거함 button 기능추가
+        Button gather = (Button) layout.findViewById(R.id.gather);
+        //현재위치 button 기능추가
+        Button now = (Button) layout.findViewById(R.id.now);
+
         //기능추가
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setSelected(true);
+                gather.setSelected(false);
+                now.setSelected(false);
                 showPlaceInformation(mDefaultLocation);
             }
         });
 
-        //수거함 button 기능추가
-        Button gather = (Button) layout.findViewById(R.id.gather);
+
         //기능추가
         gather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setSelected(false);
+                gather.setSelected(true);
+                now.setSelected(false);
                 //중복 마커 제거
                 map.clear();
 
@@ -195,12 +205,14 @@ public class FragmentSearch extends Fragment
             }
         });
 
-        //현재위치 button 기능추가
-        Button now = (Button) layout.findViewById(R.id.now);
+
         //기능추가
         now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setSelected(false);
+                gather.setSelected(false);
+                now.setSelected(true);
                 onLocationChanged(mCurrentLocatiion);
 
                 map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocatiion.getLatitude(),mCurrentLocatiion.getLongitude())));
