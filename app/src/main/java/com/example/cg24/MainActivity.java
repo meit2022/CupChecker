@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             switch (menuItem.getItemId()) {
-                case R.id.menu_home:
+                case R.id.menu_search:
                     transaction.replace(R.id.menu_frame_layout, fragmentHome).commitAllowingStateLoss();
                     break;
-                case R.id.menu_search:
+                case R.id.menu_home:
                     transaction.replace(R.id.menu_frame_layout, fragmentSearch).commitAllowingStateLoss();
                     break;
                 case R.id.menu_mypage:

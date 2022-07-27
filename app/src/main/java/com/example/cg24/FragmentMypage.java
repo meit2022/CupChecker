@@ -48,8 +48,8 @@ public class FragmentMypage extends Fragment {
 
             TextView nickname=(TextView)rootView.findViewById(R.id.loginNickname);
             nickname.setText(user.getDisplayName());
-            TextView useremail=(TextView)rootView.findViewById(R.id.loginEmail);
-            useremail.setText(user.getEmail());
+            // TextView useremail=(TextView)rootView.findViewById(R.id.loginEmail);
+            // useremail.setText(user.getEmail());
 
             iv = (ImageView) rootView.findViewById(R.id.qrcode);
 
@@ -64,7 +64,7 @@ public class FragmentMypage extends Fragment {
 
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try{
-                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,800,800);
+                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,650,650);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                 iv.setImageBitmap(bitmap);
