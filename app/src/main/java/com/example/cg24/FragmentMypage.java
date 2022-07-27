@@ -48,8 +48,8 @@ public class FragmentMypage extends Fragment {
 
             TextView nickname=(TextView)rootView.findViewById(R.id.loginNickname);
             nickname.setText(user.getDisplayName());
-            TextView useremail=(TextView)rootView.findViewById(R.id.loginEmail);
-            useremail.setText(user.getEmail());
+            // TextView useremail=(TextView)rootView.findViewById(R.id.loginEmail);
+            // useremail.setText(user.getEmail());
 
             iv = (ImageView) rootView.findViewById(R.id.qrcode);
 
