@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.menu_home:
                     transaction.replace(R.id.menu_frame_layout, fragmentSearch).commitAllowingStateLoss();
                     break;
-                case R.id.menu_mypage:  
+                case R.id.menu_mypage:
                     transaction.replace(R.id.menu_frame_layout, fragmentMypage).commitAllowingStateLoss();
                     break;
             }
