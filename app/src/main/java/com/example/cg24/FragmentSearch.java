@@ -2,6 +2,8 @@ package com.example.cg24;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+
+import android.graphics.Color;
 import android.location.LocationListener;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -170,9 +172,12 @@ public class FragmentSearch extends Fragment
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button.setSelected(true);
-                gather.setSelected(false);
-                now.setSelected(false);
+                button.setBackground(getResources().getDrawable(R.drawable.map_click));
+                button.setTextColor(Color.parseColor("#112C26"));
+                gather.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                gather.setTextColor(Color.parseColor("#ffffff"));
+                now.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                now.setTextColor(Color.parseColor("#ffffff"));
                 showPlaceInformation(mDefaultLocation);
             }
         });
@@ -182,9 +187,12 @@ public class FragmentSearch extends Fragment
         gather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button.setSelected(false);
-                gather.setSelected(true);
-                now.setSelected(false);
+                button.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                button.setTextColor(Color.parseColor("#ffffff"));
+                gather.setBackground(getResources().getDrawable(R.drawable.map_click));
+                gather.setTextColor(Color.parseColor("#112C26"));
+                now.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                now.setTextColor(Color.parseColor("#ffffff"));
                 //중복 마커 제거
                 map.clear();
 
@@ -210,9 +218,12 @@ public class FragmentSearch extends Fragment
         now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button.setSelected(false);
-                gather.setSelected(false);
-                now.setSelected(true);
+                button.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                button.setTextColor(Color.parseColor("#ffffff"));
+                gather.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                gather.setTextColor(Color.parseColor("#ffffff"));
+                now.setBackground(getResources().getDrawable(R.drawable.map_click));
+                now.setTextColor(Color.parseColor("#112C26"));
                 onLocationChanged(mCurrentLocatiion);
 
                 map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocatiion.getLatitude(),mCurrentLocatiion.getLongitude())));

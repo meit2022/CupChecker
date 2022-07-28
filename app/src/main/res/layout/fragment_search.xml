@@ -23,7 +23,7 @@
         android:gravity="center"
         android:queryHint="위치 기반으로 검색" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="100dp"
         android:layout_height="45dp"
@@ -31,22 +31,23 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="42dp"
         android:layout_marginTop="65dp"
-        android:background="@drawable/map_btncolor"
-        android:textColor="@drawable/map_btntext"
+        android:background="@drawable/map_noclick"
+        android:textColor="@color/white"
         android:text="카페" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/now"
         android:layout_width="100dp"
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
-        android:textColor="@drawable/map_btntext"
+        android:background="@drawable/map_noclick"
+        android:textColor="@color/white"
         android:text="현재위치" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/gather"
         android:layout_width="100dp"
         android:layout_height="45dp"
@@ -54,8 +55,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="42dp"
-        android:background="@drawable/map_btncolor"
-        android:textColor="@drawable/map_btntext"
+        android:background="@drawable/map_noclick"
+        android:textColor="@color/white"
         android:text="수거함" />
 
     <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
