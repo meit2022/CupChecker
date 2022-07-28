@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.menu_frame_layout, fragmentHome).commitAllowingStateLoss();
+        transaction.replace(R.id.menu_frame_layout, fragmentSearch).commitAllowingStateLoss();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.menu_bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
