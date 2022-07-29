@@ -10,25 +10,50 @@
     <!-- tools:context=".LoginActivity"-->
 
     <TextView
-        android:layout_marginTop="160dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="50dp"
-        android:textColor="#2FA599"
+        android:textStyle="bold"
+        android:textColor="#112C26"
         android:text="CG24"/>
 
-    <Button
+    <ImageView
         android:layout_gravity="center"
-        android:id="@+id/googleLoginBtn"
         android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/earth_img"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:gravity="center"
+        android:id="@+id/googleLoginBtn"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/round_margin_green"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="구글 로그인"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:gravity="center"
+        android:id="@+id/normalLoginBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#2FA599"
-        android:fontFamily="@font/mainfont"
-        android:text="login"
-        android:textColor="@color/black" />
+        android:textColor="#ffffff"
+        android:background="@drawable/round_margin_green"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="일반 로그인"/>
 
 
 </LinearLayout>
