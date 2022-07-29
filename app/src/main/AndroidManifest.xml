@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
+    <!-- 인터넷 권한 추가 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +30,14 @@
         <activity
             android:name="com.example.cg24.MainActivity"
             android:exported="false"/>
+
+        <activity
+            android:name="com.example.cg24.LoginActivity2"
+            android:exported="false"/>
+
+        <activity
+            android:name="com.example.cg24.RegisterActivity"
+            android:exported="false" />
 
 
         <meta-data
