@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--store-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity2">
+
+    <LinearLayout
+        android:id="@+id/signupTopbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="#112C26"
+            android:text="일반 로그인"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/registerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/loginEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="email"
+                android:layout_marginBottom="10dp"
+                android:background="@null"
+                tools:layout_editor_absoluteY="423dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="30dp"
+                android:background="#112C26"/>
+
+            <EditText
+                android:id="@+id/loginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_marginHorizontal="15dp"
+                android:hint="nickname"
+                android:layout_marginBottom="10dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="30dp"
+                android:background="#112C26"/>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:gravity="center"
+            android:id="@+id/normalLoginBtn2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/round_margin_green"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="일반 로그인"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:gravity="center"
+            android:id="@+id/normalRegisterBtn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/round_margin_green"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="일반 회원가입"/>
+    </LinearLayout>
+
+</LinearLayout>

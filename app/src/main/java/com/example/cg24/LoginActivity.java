@@ -2,8 +2,10 @@ package com.example.cg24;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,11 +34,12 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleApiClient googleApiClient;
     private static final int RED_SIGN_GOOGLE=100;
 
+    private EditText etEmail, etPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         GoogleSignInOptions googoleSigninOptions=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -65,6 +68,21 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         signOut2();
+
+
+        // 일반 로그인
+        Button btn_login=findViewById(R.id.normalLoginBtn);
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(LoginActivity.this, "login success", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplicationContext(), LoginActivity2.class);
+                // intent.putExtra("nickname", account.getDisplayName());
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     // 구글 로그인 진행 시 결과 되돌려 받는 장소
@@ -138,4 +156,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 }
