@@ -2,6 +2,8 @@ package com.example.cg24;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+
+import android.graphics.Color;
 import android.location.LocationListener;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -161,20 +163,36 @@ public class FragmentSearch extends Fragment
 
         //button 기능추가
         Button button = (Button) layout.findViewById(R.id.button);
+        //수거함 button 기능추가
+        Button gather = (Button) layout.findViewById(R.id.gather);
+        //현재위치 button 기능추가
+        Button now = (Button) layout.findViewById(R.id.now);
+
         //기능추가
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setBackground(getResources().getDrawable(R.drawable.map_click));
+                button.setTextColor(Color.parseColor("#112C26"));
+                gather.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                gather.setTextColor(Color.parseColor("#ffffff"));
+                now.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                now.setTextColor(Color.parseColor("#ffffff"));
                 showPlaceInformation(mDefaultLocation);
             }
         });
 
-        //수거함 button 기능추가
-        Button gather = (Button) layout.findViewById(R.id.gather);
+
         //기능추가
         gather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                button.setTextColor(Color.parseColor("#ffffff"));
+                gather.setBackground(getResources().getDrawable(R.drawable.map_click));
+                gather.setTextColor(Color.parseColor("#112C26"));
+                now.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                now.setTextColor(Color.parseColor("#ffffff"));
                 //중복 마커 제거
                 map.clear();
 
@@ -195,12 +213,17 @@ public class FragmentSearch extends Fragment
             }
         });
 
-        //현재위치 button 기능추가
-        Button now = (Button) layout.findViewById(R.id.now);
+
         //기능추가
         now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                button.setTextColor(Color.parseColor("#ffffff"));
+                gather.setBackground(getResources().getDrawable(R.drawable.map_noclick));
+                gather.setTextColor(Color.parseColor("#ffffff"));
+                now.setBackground(getResources().getDrawable(R.drawable.map_click));
+                now.setTextColor(Color.parseColor("#112C26"));
                 onLocationChanged(mCurrentLocatiion);
 
                 map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocatiion.getLatitude(),mCurrentLocatiion.getLongitude())));
