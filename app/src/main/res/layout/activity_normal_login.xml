@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:layout_marginHorizontal="15dp"
-                android:hint="nickname"
+                android:hint="password"
                 android:layout_marginBottom="10dp"/>
             <View
                 android:layout_width="match_parent"
