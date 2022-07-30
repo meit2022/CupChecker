@@ -3,7 +3,10 @@ package com.example.cg24;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -88,7 +91,7 @@ public class FragmentSearch extends Fragment
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
     private static final int UPDATE_INTERVAL_MS = 1000 * 60 * 1;  // 1분 단위 시간 갱신
-    private static final int FASTEST_UPDATE_INTERVAL_MS = 1000 * 60 ; // 30초 단위로 화면 갱신
+    private static final int FASTEST_UPDATE_INTERVAL_MS = 1000 * 60 ; // 60초 단위로 화면 갱신
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
     private static int AUTOCOMPLETE_REQUEST_CODE = 200;
@@ -205,7 +208,13 @@ public class FragmentSearch extends Fragment
                 markerOptions.position(GATHER);
                 markerOptions.title("수거함");
                 markerOptions.snippet("숙명여자대학교 프라임관");
+
+                BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_gather2);
+                Bitmap b=bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, 200, 200, false);
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
                 map.addMarker(markerOptions);
+
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(GATHER);
                 map.moveCamera(cameraUpdate);
 
@@ -225,7 +234,6 @@ public class FragmentSearch extends Fragment
                 now.setBackground(getResources().getDrawable(R.drawable.map_click));
                 now.setTextColor(Color.parseColor("#112C26"));
                 onLocationChanged(mCurrentLocatiion);
-
                 map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocatiion.getLatitude(),mCurrentLocatiion.getLongitude())));
             }
         });
@@ -318,9 +326,9 @@ public class FragmentSearch extends Fragment
         //mLocationRequest=new LocationRequest.Builder(long intervalMillis);
 
        locationRequest = new LocationRequest()
-               // .setInterval(UPDATE_INTERVAL_MS) // 위치가 Update 되는 주기
-                .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS); // 위치 획득후 업데이트되는 주기
-        //.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY) // 정확도를 최우선적으로 고려
+               //.setInterval(UPDATE_INTERVAL_MS) // 위치가 Update 되는 주기
+                //.setFastestInterval(FASTEST_UPDATE_INTERVAL_MS); // 위치 획득후 업데이트되는 주기
+        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // 정확도를 최우선적으로 고려
         LocationSettingsRequest.Builder builder =
                 new LocationSettingsRequest.Builder();
 
@@ -464,6 +472,11 @@ public class FragmentSearch extends Fragment
         markerOptions.title(markerTitle);
         markerOptions.snippet(markerSnippet);
         markerOptions.draggable(true);
+
+        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_now2);
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, 200, 200, false);
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
         currentMarker = map.addMarker(markerOptions);
 
@@ -611,6 +624,10 @@ public class FragmentSearch extends Fragment
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
                     markerOptions.snippet(markerSnippet);
+                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_cafe2);
+                    Bitmap b=bitmapdraw.getBitmap();
+                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, 200, 200, false);
+                    markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
                     Marker item = map.addMarker(markerOptions);
                     previous_marker.add(item);
                 }
