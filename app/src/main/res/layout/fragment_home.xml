@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".FragmentHome">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="top"
+        android:text=" 저금통"
+        android:textColor="#112C26"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,28 +30,30 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
+
             <TextView
-            android:id="@+id/loginNickname"
-            android:gravity="center"
-            android:text="닉네임"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:textSize="35sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                android:id="@+id/loginNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="닉네임"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+
             <TextView
-            android:gravity="center"
-            android:text=" 님의 현재 점수는,"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:textSize="25sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text=" 님의 현재 점수는,"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
         </LinearLayout>
 
         <!--포인트와 이미지-->
@@ -49,51 +61,55 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:paddingTop="20dp"
             android:background="@drawable/home_back2"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
             <!--포인트와 이미지-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingBottom="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="20dp">
+
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/userimg"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="50dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:src="@drawable/userimg" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="total "
-                        android:textStyle="italic"
+                        android:textColor="@color/white"
                         android:textSize="25sp"
-                        android:textColor="@color/white"/>
+                        android:textStyle="italic" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1906"
-                        android:textStyle="italic"
+                        android:textColor="@color/white"
                         android:textSize="25sp"
-                        android:textColor="@color/white"/>
+                        android:textStyle="italic" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" pt"
-                        android:textStyle="italic"
+                        android:textColor="@color/white"
                         android:textSize="25sp"
-                        android:textColor="@color/white"/>
+                        android:textStyle="italic" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -120,34 +136,37 @@
                             android:layout_height="match_parent"
                             android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
                                 android:text="2022.07.30"
-                                android:textSize="30sp"
+                                android:textColor="#112C26"
                                 android:textFontWeight="@integer/material_motion_duration_long_2"
-                                android:textColor="#112C26"/>
+                                android:textSize="30sp" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="100dp"
                                 android:orientation="horizontal">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="45"
-                                    android:textStyle="italic"
+                                    android:textColor="#374D47"
                                     android:textSize="30sp"
-                                    android:textColor="#374D47"/>
+                                    android:textStyle="italic" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=" pt"
-                                    android:textStyle="italic"
+                                    android:textColor="#374D47"
                                     android:textSize="30sp"
-                                    android:textColor="#374D47"/>
+                                    android:textStyle="italic" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -156,7 +175,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0.5dp"
                             android:background="@color/black"
-                            android:paddingBottom="15dp"/>
+                            android:paddingBottom="15dp" />
 
                     </LinearLayout>
 
