@@ -8,16 +8,16 @@
     android:background="#ffffff"
     tools:context=".FragmentMypage">
 
-
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:gravity="top"
-        android:text="마이페이지"
-        android:layout_marginTop="15dp"
+        android:text=" 마이페이지"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
-        android:textColor="@android:color/black"
-        android:textSize="35sp"/>
+        android:textColor="#112C26"
+        android:textSize="25dp"/>
 
     <LinearLayout
         android:id="@+id/mypage_layout2"
