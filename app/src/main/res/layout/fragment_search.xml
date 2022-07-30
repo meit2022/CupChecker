@@ -8,6 +8,17 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="top"
+        android:text=" 지도"
+        android:textColor="#112C26"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
     <SearchView
         android:id="@+id/sv_location"
         android:layout_width="350dp"
@@ -16,19 +27,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="65dp"
         android:layout_marginRight="30dp"
         android:background="@color/white"
         android:elevation="5dp"
         android:gravity="center"
-        android:queryHint="위치 기반으로 검색" />
+        android:queryHint="장소, 주소 검색" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_toStartOf="@+id/now"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="125dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/map_noclick"
         android:drawableStart="@drawable/img_map_cafe"
@@ -45,7 +56,7 @@
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="125dp"
         android:background="@drawable/map_noclick"
         android:drawableStart="@drawable/img_map_now"
         android:textColor="@color/white"
@@ -61,7 +72,7 @@
         android:layout_height="45dp"
         android:layout_toEndOf="@+id/now"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="125dp"
         android:background="@drawable/map_noclick"
         android:drawableStart="@drawable/img_map_gather"
         android:paddingRight="10dp"
@@ -70,14 +81,15 @@
         android:textSize="15dp"
         android:textStyle="bold" />
 
-    <fragment
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/google_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="-4dp"
-        android:layout_marginTop="-3dp"
+        android:layout_marginTop="55dp"
         app:mapId="CG24" />
 
 </RelativeLayout>
