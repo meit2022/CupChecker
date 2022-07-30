@@ -26,7 +26,7 @@ public class FragmentHome extends Fragment {
 
             TextView nickname=(TextView)rootView.findViewById(R.id.loginNickname);
             nickname.setText(user.getDisplayName());
-            
+
             return rootView;
         }
 }
