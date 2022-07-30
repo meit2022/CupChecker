@@ -214,7 +214,6 @@ public class FragmentSearch extends Fragment
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, 200, 200, false);
                 markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
                 map.addMarker(markerOptions);
-
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(GATHER);
                 map.moveCamera(cameraUpdate);
 
@@ -233,6 +232,10 @@ public class FragmentSearch extends Fragment
                 gather.setTextColor(Color.parseColor("#ffffff"));
                 now.setBackground(getResources().getDrawable(R.drawable.map_click));
                 now.setTextColor(Color.parseColor("#112C26"));
+                map.clear();//지도 클리어
+
+                if (previous_marker != null)
+                    previous_marker.clear();//지역정보 마커 클리어
                 onLocationChanged(mCurrentLocatiion);
                 map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocatiion.getLatitude(),mCurrentLocatiion.getLongitude())));
             }
@@ -655,7 +658,7 @@ public class FragmentSearch extends Fragment
                 .listener((PlacesListener) FragmentSearch.this)
                 .key("API키")
                 .latlng(mCurrentLocatiion.getLatitude(), mCurrentLocatiion.getLongitude())//현재 위치
-                .radius(500) //500 미터 내에서 검색
+                .radius(300) //300 미터 내에서 검색
                 .type(PlaceType.CAFE) //카페
                 .build()
                 .execute();
