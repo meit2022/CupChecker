@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.data.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
@@ -49,21 +61,41 @@ public class FragmentMypage extends Fragment {
             mAuth=FirebaseAuth.getInstance();
             final FirebaseUser user=mAuth.getCurrentUser();
 
-            TextView nickname=(TextView)rootView.findViewById(R.id.loginNickname);
-            nickname.setText(user.getDisplayName());
-            // TextView useremail=(TextView)rootView.findViewById(R.id.loginEmail);
-            // useremail.setText(user.getEmail());
-
-            iv = (ImageView) rootView.findViewById(R.id.qrcode);
-
             if (user != null) {
                 text =user.getUid();
             } else {
                 text ="no user";
             }
 
-            // TextView qrcode_tv=(TextView)rootView.findViewById(R.id.qr_text);
-            // qrcode_tv.setText(text);
+            TextView nickname=(TextView)rootView.findViewById(R.id.loginNickname);
+
+            // 구글 로그인 이름 띄우기
+            // nickname.setText(user.getDisplayName());
+
+            DatabaseReference dataRef;
+            dataRef = FirebaseDatabase.getInstance().getReference();
+
+            // 마이페이지에 이름 띄우기
+            DatabaseReference newRef=dataRef.child("CG24").child("UserAccount").child(text);
+            newRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String nickname1=dataSnapshot.child("nickname").getValue().toString();
+                    nickname.setText(nickname1);
+
+                    // FirebaseUser user=mAuth.getCurrentUser();
+                    // dataRef.child("CG24").child("UserAccount").child(user.getUid()).setValue(nickname1);
+
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w("find nickname", "Failed to read value.", error.toException());
+                }
+            });
+
+
+            // QR 코드
+            iv = (ImageView) rootView.findViewById(R.id.qrcode);
 
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try{
@@ -73,6 +105,9 @@ public class FragmentMypage extends Fragment {
                 iv.setImageBitmap(bitmap);
             }catch (Exception e){}
 
+
+            // 이름 변경하기
+            /*
             Button rename_btn=(Button)rootView.findViewById(R.id.mypage_rename_btn);
             rename_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,7 +129,9 @@ public class FragmentMypage extends Fragment {
                             Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
                             String new_name=etName.getText().toString();
                             nickname.setText(new_name);
-                            // user.s
+
+                            // 이름 변경
+                            // dataRef.child("CG24").child("UserAccount").child(text).child("nickname").setValue(new_name);
                         }
                     });
 
@@ -105,13 +142,12 @@ public class FragmentMypage extends Fragment {
                             Toast.makeText(getContext(), "Cancel", Toast.LENGTH_SHORT).show();
                         }
                     });
-
                     AlertDialog alertDialog = builder.create();
-
                     alertDialog.show();
                 }
             });
 
+             */
             return rootView;
         }
 }
