@@ -25,7 +25,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -100,6 +106,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+    FirebaseUser user;
+    String txUserName;
+
     // 로그인 결과 값 출력 수행
     private void resultLogin(GoogleSignInAccount account) {
 
@@ -112,6 +122,35 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("nickname", account.getDisplayName());
                     startActivity(intent);
+
+                    String text;
+                    if (user != null) {
+                        text =user.getUid();
+                    } else {
+                        text ="no user";
+                    }
+
+                    DatabaseReference newRef=dataRef.child("CG24").child("UserAccount").child(text);
+                    newRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // 이미 로그인을 했을 경우
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            UserAccount account=new UserAccount();
+
+                            account.setIdToken(user.getUid());
+                            account.setEmailId(user.getEmail());
+                            account.setNickname(user.getDisplayName());
+
+                            dataRef.child("CG24").child("UserAccount").child(user.getUid()).setValue(account);
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            Log.w("find nickname", "Failed to read value.", error.toException());
+                        }
+                    });
+
+
                 } else {
                     Toast.makeText(LoginActivity.this, "login fail", Toast.LENGTH_SHORT).show();
                 }
@@ -135,15 +174,6 @@ public class LoginActivity extends AppCompatActivity {
                     Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
                         @Override
                         public void onResult(@NonNull Status status) {
-                            /*
-                            if (status.isSuccess()) {
-                                setResult(ResultCode.SIGN_OUT_SUCCESS);
-                            } else {
-                                setResult(ResultCode.SIGN_OUT_FAIL);
-                            }
-                            finish();
-                            */
-
                         }
                     });
                 }
