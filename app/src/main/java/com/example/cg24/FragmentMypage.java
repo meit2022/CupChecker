@@ -35,7 +35,9 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class FragmentMypage extends Fragment {
         private FirebaseAuth mAuth;
@@ -107,7 +109,7 @@ public class FragmentMypage extends Fragment {
 
 
             // 이름 변경하기
-            /*
+
             Button rename_btn=(Button)rootView.findViewById(R.id.mypage_rename_btn);
             rename_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,8 +132,13 @@ public class FragmentMypage extends Fragment {
                             String new_name=etName.getText().toString();
                             nickname.setText(new_name);
 
+                            Map<String, Object> childUpdates = new HashMap<>();
+                            childUpdates.put("CG24/UserAccount/"+text+"/nickname", new_name);
+
                             // 이름 변경
                             // dataRef.child("CG24").child("UserAccount").child(text).child("nickname").setValue(new_name);
+                            // dataRef.child("CG24").child("UserAccount").child(text).child("nickname").updateChildren(childUpdates);
+                            dataRef.updateChildren(childUpdates);
                         }
                     });
 
@@ -147,7 +154,7 @@ public class FragmentMypage extends Fragment {
                 }
             });
 
-             */
+
             return rootView;
         }
 }
