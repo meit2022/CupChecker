@@ -109,7 +109,6 @@ public class FragmentMypage extends Fragment {
 
 
             // 이름 변경하기
-
             Button rename_btn=(Button)rootView.findViewById(R.id.mypage_rename_btn);
             rename_btn.setOnClickListener(new View.OnClickListener() {
                 @Override

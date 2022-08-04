@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                             account.setNickname(strNickname);
 
                             mDatabaseRef.child("UserAccount").child(user.getUid()).setValue(account);
+                            // mDatabaseRef.child("IDs").setValue(user.getUid());
 
                             Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);

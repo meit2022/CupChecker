@@ -33,6 +33,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button btn_google;
@@ -149,6 +152,72 @@ public class LoginActivity extends AppCompatActivity {
                             Log.w("find nickname", "Failed to read value.", error.toException());
                         }
                     });
+
+                    // 아이디만 따로 저장하기
+                    /*
+                    DatabaseReference newRef2=dataRef.child("CG24").child("ID1");
+                    newRef2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // 이미 로그인을 했을 경우
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            // dataRef.child("CG24").child("IDs").push().setValue(user.getUid());
+                            // dataRef.child("CG24").child("IDs").put(user.getUid()).setValue(user.getUid());
+
+                            // user
+
+                            Map<String, Object> idsUpdate = new HashMap<>();
+                            idsUpdate.put("2", user.getUid());
+
+                            dataRef.child("CG24").child("IDs").updateChildren(idsUpdate);
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            Log.w("find nickname", "Failed to read value.", error.toException());
+                        }
+                    });
+                     */
+
+
+                    /*
+                    DatabaseReference newRef3=dataRef.child("CG24").child("ID2").child(text);
+                    newRef3.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // 이미 로그인을 했을 경우
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            dataRef.child("CG24").child("ID2").child(user.getUid()).setValue(user.getUid());
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            Log.w("find nickname", "Failed to read value.", error.toException());
+                        }
+                    });
+
+                    DatabaseReference newRef2=dataRef.child("CG24").child("practice");
+                    newRef2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // 이미 로그인을 했을 경우
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            // dataRef.child("CG24").child("IDs").push().setValue(user.getUid());
+                            // dataRef.child("CG24").child("IDs").put(user.getUid()).setValue(user.getUid());
+
+                            // user
+
+                            Map<String, Object> idsUpdate = new HashMap<>();
+                            idsUpdate.put("3", user.getUid());
+
+                            dataRef.child("CG24").child("practice").updateChildren(idsUpdate);
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            Log.w("find nickname", "Failed to read value.", error.toException());
+                        }
+                    });
+                    
+                     */
+
 
 
                 } else {
