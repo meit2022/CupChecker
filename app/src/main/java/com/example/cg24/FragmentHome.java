@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,9 @@ public class FragmentHome extends Fragment {
             final FirebaseUser user=mAuth.getCurrentUser();
 
             TextView nickname=(TextView)rootView.findViewById(R.id.loginNickname);
+            TextView pointTV=(TextView)rootView.findViewById(R.id.home_total_point);
+            ImageView pointIV=(ImageView)rootView.findViewById(R.id.home_point_iv);
+
             // nickname.setText(user.getDisplayName());
 
             DatabaseReference dataRef;
@@ -50,6 +54,23 @@ public class FragmentHome extends Fragment {
                     Log.w("find nickname", "Failed to read value.", error.toException());
                 }
             });
+
+
+            pointTV.setText("1500");
+            String str_point=pointTV.getText().toString();
+            int int_point = Integer.parseInt(str_point);
+
+            if (int_point==0) {
+                pointIV.setImageResource(R.drawable.point1);
+            } else if (500>=int_point && int_point>0) {
+                pointIV.setImageResource(R.drawable.point2);
+            } else if (1000>=int_point && int_point>500) {
+                pointIV.setImageResource(R.drawable.point3);
+            } else if ( int_point>1000) {
+                pointIV.setImageResource(R.drawable.point4);
+            } else {
+                pointIV.setImageResource(R.drawable.point1);
+            }
 
 
             return rootView;

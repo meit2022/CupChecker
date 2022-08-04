@@ -24,10 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/home_back1"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/mypage_user_img"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_marginBottom="15dp"

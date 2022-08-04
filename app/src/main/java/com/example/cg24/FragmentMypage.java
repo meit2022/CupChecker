@@ -60,6 +60,22 @@ public class FragmentMypage extends Fragment {
                 }
             });
 
+            ImageView pageIV=(ImageView)rootView.findViewById(R.id.mypage_user_img);
+
+            int int_point = 0;
+
+            if (int_point==0) {
+                pageIV.setImageResource(R.drawable.point1);
+            } else if (500>=int_point && int_point>0) {
+                pageIV.setImageResource(R.drawable.point2);
+            } else if (1000>=int_point && int_point>500) {
+                pageIV.setImageResource(R.drawable.point3);
+            } else if ( int_point>1000) {
+                pageIV.setImageResource(R.drawable.point4);
+            } else {
+                pageIV.setImageResource(R.drawable.point1);
+            }
+
             mAuth=FirebaseAuth.getInstance();
             final FirebaseUser user=mAuth.getCurrentUser();
 
