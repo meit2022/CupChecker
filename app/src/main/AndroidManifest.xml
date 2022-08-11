@@ -41,6 +41,9 @@
             android:name="com.example.cg24.RegisterActivity"
             android:exported="false" />
 
+        <activity
+            android:name="com.example.cg24.barcode"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
