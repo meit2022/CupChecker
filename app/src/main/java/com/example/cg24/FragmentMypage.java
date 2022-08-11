@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,12 +118,20 @@ public class FragmentMypage extends Fragment {
 
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try{
-                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,650,650);
+                BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.CODE_39,800,320);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                 iv.setImageBitmap(bitmap);
             }catch (Exception e){}
 
+            iv.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(),barcode.class); //fragment라서 activity intent와는 다른 방식
+                   // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                }
+            });
 
             // 이름 변경하기
 
