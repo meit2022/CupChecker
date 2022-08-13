@@ -38,6 +38,7 @@ public class FragmentHome extends Fragment {
     private FirebaseAuth mAuth;
 
     TextView hash_point;
+    TextView hash_date;
     RecyclerView mRecyclerView;
     MyRecyclerAdapter mRecyclerAdapter;
     ArrayList<Data> mdataItems;
@@ -46,7 +47,7 @@ public class FragmentHome extends Fragment {
     DatabaseReference databaseReference2;
 
     public static FragmentHome context_detail1;
-    public String point, disease;
+    public String point, date;
     Map<String, Object> map2;
     List<String> list2;
     String[] items2;
@@ -83,17 +84,6 @@ public class FragmentHome extends Fragment {
                 }
             });
 
-
-           /* //포인트 받기
-            Intent intent=getActivity().getIntent();
-            //part=intent.getStringExtra("part");
-            point=intent.getStringExtra("point");
-            context_detail1=this; //전역변수로 사용
-
-            //# 뒤에 포인트 입력
-            hash_point=(TextView)rootView.findViewById(R.id.point);
-            hash_point.setText(point);*/
-
             //recyclerview list data 만들기
             mdataItems=new ArrayList<Data>();
             //recyclerview와 layout 연결
@@ -107,6 +97,7 @@ public class FragmentHome extends Fragment {
 
             databaseReference2=database2.getReference();
 
+
             //count값 가져오기
             DatabaseReference count=databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount");
             count.addValueEventListener(new ValueEventListener() {
@@ -115,7 +106,11 @@ public class FragmentHome extends Fragment {
                    String count1;
                     count1 = dataSnapshot.child("count").getValue().toString();
                     Log.d(TAG, "count " + count1);
-                    if (count1 == null){
+                    if (count1 == "0"){
+                        String date = "";
+                        String point = "";
+                        mdataItems.add(new Data(point, date));
+                        mRecyclerAdapter.setData(mdataItems);
                         Log.w("null", "null");
                     }
                     else {
@@ -126,7 +121,7 @@ public class FragmentHome extends Fragment {
 
                         for (int i = 0; i < count2; i++) {
                             String i2 = Integer.toString(i);
-                            DatabaseReference Ref = databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child(i2).child("prediction");
+                            DatabaseReference Ref = databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child(i2);
                             Ref.addValueEventListener(new ValueEventListener() {
                                 @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
@@ -134,18 +129,14 @@ public class FragmentHome extends Fragment {
                                     String plz;
                                     plz = dataSnapshot.getValue().toString();
                                     Log.d(TAG, "plz " + plz);
-                                    /*map2 = (Map<String, java.lang.Object>) dataSnapshot.getValue();
-                                    list2 = new ArrayList<String>(map2.keySet());
-                                    items2 = list2.toArray(new String[0]);
-                                    Log.d(TAG, "Value is1111111 " + list2);
 
 
-                                    for (String item : list2) {
-                                        mdataItems.add(new Data(item));
-                                    }*/
-                                    mdataItems.add(new Data(plz));
+                                    String date = dataSnapshot.child("datetime").getValue().toString();
+                                    String point = dataSnapshot.child("prediction").getValue().toString();
+                                    int point2= Integer.parseInt(point);
+
+                                    mdataItems.add(new Data(point, date));
                                     mRecyclerAdapter.setData(mdataItems);
-
                                 }
 
                                 @Override
@@ -162,43 +153,34 @@ public class FragmentHome extends Fragment {
                 }
             });
 
-
-
-
-
-
-
-
             //점수에 따라 이미지 바꾸기
-            pointTV.setText("1500");
-            String str_point=pointTV.getText().toString();
-            int int_point = Integer.parseInt(str_point);
+            DatabaseReference point=dataRef.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount");
+            point.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String totalpoint=dataSnapshot.child("point").getValue().toString();
+                    pointTV.setText(totalpoint);
 
-            if (int_point==0) {
-                pointIV.setImageResource(R.drawable.point1);
-            } else if (500>=int_point && int_point>0) {
-                pointIV.setImageResource(R.drawable.point2);
-            } else if (1000>=int_point && int_point>500) {
-                pointIV.setImageResource(R.drawable.point3);
-            } else if ( int_point>1000) {
-                pointIV.setImageResource(R.drawable.point4);
-            } else {
-                pointIV.setImageResource(R.drawable.point1);
-            }
+                    int int_point = Integer.parseInt(totalpoint);
 
+                    if (int_point==0) {
+                        pointIV.setImageResource(R.drawable.point1);
+                    } else if (500>=int_point && int_point>0) {
+                        pointIV.setImageResource(R.drawable.point2);
+                    } else if (1000>=int_point && int_point>500) {
+                        pointIV.setImageResource(R.drawable.point3);
+                    } else if ( int_point>1000) {
+                        pointIV.setImageResource(R.drawable.point4);
+                    } else {
+                        pointIV.setImageResource(R.drawable.point1);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w("point error", "Failed to read value.", error.toException());
+                }
+            });
 
-
-            // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-            // RecyclerView recyclerView = (TextView)rootView.findViewById(R.id.recyclerView);
-
-            /*
-            RecyclerView recyclerView=(RecyclerView)rootView.findViewById(R.id.recyclerView);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext())) ;
-
-            // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-            MyRecyclerAdapter adapter = new MyRecyclerAdapter() ;
-            recyclerView.setAdapter(adapter) ;
-             */
 
             return rootView;
         }
