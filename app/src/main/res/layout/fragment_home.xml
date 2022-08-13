@@ -141,10 +141,11 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
-                                android:text="2022.07.30"
+                                android:text="날짜"
                                 android:textColor="#112C26"
                                 android:textFontWeight="@integer/material_motion_duration_long_2"
                                 android:textSize="30sp" />
@@ -156,9 +157,10 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/point"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="45"
+                                    android:text="포인트"
                                     android:textColor="#374D47"
                                     android:textSize="30sp"
                                     android:textStyle="italic" />
@@ -179,14 +181,15 @@
                             android:layout_height="0.5dp"
                             android:background="@color/black"
                             android:paddingBottom="15dp" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+
 
                 </LinearLayout>
 
