@@ -7,6 +7,7 @@ public class Data {
 
     public Data(String point) {
         this.point = point;
+        this.date=date;
 
     }
 

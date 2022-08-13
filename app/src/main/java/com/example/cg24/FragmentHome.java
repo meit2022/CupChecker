@@ -38,6 +38,7 @@ public class FragmentHome extends Fragment {
     private FirebaseAuth mAuth;
 
     TextView hash_point;
+    TextView hash_date;
     RecyclerView mRecyclerView;
     MyRecyclerAdapter mRecyclerAdapter;
     ArrayList<Data> mdataItems;
@@ -46,7 +47,7 @@ public class FragmentHome extends Fragment {
     DatabaseReference databaseReference2;
 
     public static FragmentHome context_detail1;
-    public String point, disease;
+    public String point, date;
     Map<String, Object> map2;
     List<String> list2;
     String[] items2;
@@ -83,17 +84,20 @@ public class FragmentHome extends Fragment {
                 }
             });
 
-
-           /* //포인트 받기
+/*
+           //포인트 받기
             Intent intent=getActivity().getIntent();
             //part=intent.getStringExtra("part");
             point=intent.getStringExtra("point");
+            date=intent.getStringExtra("date");*/
             context_detail1=this; //전역변수로 사용
-
+/*
             //# 뒤에 포인트 입력
             hash_point=(TextView)rootView.findViewById(R.id.point);
-            hash_point.setText(point);*/
-
+            hash_point.setText(point);
+            hash_date=(TextView)rootView.findViewById(R.id.date);
+            hash_date.setText(date);*/
+            
             //recyclerview list data 만들기
             mdataItems=new ArrayList<Data>();
             //recyclerview와 layout 연결
@@ -126,7 +130,7 @@ public class FragmentHome extends Fragment {
 
                         for (int i = 0; i < count2; i++) {
                             String i2 = Integer.toString(i);
-                            DatabaseReference Ref = databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child(i2).child("prediction");
+                            DatabaseReference Ref = databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child(i2);
                             Ref.addValueEventListener(new ValueEventListener() {
                                 @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
@@ -134,16 +138,17 @@ public class FragmentHome extends Fragment {
                                     String plz;
                                     plz = dataSnapshot.getValue().toString();
                                     Log.d(TAG, "plz " + plz);
-                                    /*map2 = (Map<String, java.lang.Object>) dataSnapshot.getValue();
+                                   // map2 = (Map<String, java.lang.Object>) dataSnapshot.child("datetime").getValue();
+                                    map2 = (Map<String, java.lang.Object>) dataSnapshot.getValue();
                                     list2 = new ArrayList<String>(map2.keySet());
-                                    items2 = list2.toArray(new String[0]);
+                                    items2 = list2.stream().toArray(String[]::new);
                                     Log.d(TAG, "Value is1111111 " + list2);
 
 
                                     for (String item : list2) {
-                                        mdataItems.add(new Data(item));
-                                    }*/
-                                    mdataItems.add(new Data(plz));
+                                        mdataItems.add(new Data(item,item));
+                                    }
+                                    /*mdataItems.add(new Data(plz));*/
                                     mRecyclerAdapter.setData(mdataItems);
 
                                 }
