@@ -84,20 +84,6 @@ public class FragmentHome extends Fragment {
                 }
             });
 
-/*
-           //포인트 받기
-            Intent intent=getActivity().getIntent();
-            //part=intent.getStringExtra("part");
-            point=intent.getStringExtra("point");
-            date=intent.getStringExtra("date");*/
-            context_detail1=this; //전역변수로 사용
-/*
-            //# 뒤에 포인트 입력
-            hash_point=(TextView)rootView.findViewById(R.id.point);
-            hash_point.setText(point);
-            hash_date=(TextView)rootView.findViewById(R.id.date);
-            hash_date.setText(date);*/
-
             //recyclerview list data 만들기
             mdataItems=new ArrayList<Data>();
             //recyclerview와 layout 연결
@@ -110,6 +96,7 @@ public class FragmentHome extends Fragment {
             database2= FirebaseDatabase.getInstance();
 
             databaseReference2=database2.getReference();
+
 
             //count값 가져오기
             DatabaseReference count=databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount");
@@ -146,9 +133,10 @@ public class FragmentHome extends Fragment {
 
                                     String date = dataSnapshot.child("datetime").getValue().toString();
                                     String point = dataSnapshot.child("prediction").getValue().toString();
+                                    int point2= Integer.parseInt(point);
+
                                     mdataItems.add(new Data(point, date));
                                     mRecyclerAdapter.setData(mdataItems);
-
                                 }
 
                                 @Override
@@ -165,43 +153,34 @@ public class FragmentHome extends Fragment {
                 }
             });
 
-
-
-
-
-
-
-
             //점수에 따라 이미지 바꾸기
-            pointTV.setText("1500");
-            String str_point=pointTV.getText().toString();
-            int int_point = Integer.parseInt(str_point);
+            DatabaseReference point=dataRef.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount");
+            point.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String totalpoint=dataSnapshot.child("point").getValue().toString();
+                    pointTV.setText(totalpoint);
 
-            if (int_point==0) {
-                pointIV.setImageResource(R.drawable.point1);
-            } else if (500>=int_point && int_point>0) {
-                pointIV.setImageResource(R.drawable.point2);
-            } else if (1000>=int_point && int_point>500) {
-                pointIV.setImageResource(R.drawable.point3);
-            } else if ( int_point>1000) {
-                pointIV.setImageResource(R.drawable.point4);
-            } else {
-                pointIV.setImageResource(R.drawable.point1);
-            }
+                    int int_point = Integer.parseInt(totalpoint);
 
+                    if (int_point==0) {
+                        pointIV.setImageResource(R.drawable.point1);
+                    } else if (500>=int_point && int_point>0) {
+                        pointIV.setImageResource(R.drawable.point2);
+                    } else if (1000>=int_point && int_point>500) {
+                        pointIV.setImageResource(R.drawable.point3);
+                    } else if ( int_point>1000) {
+                        pointIV.setImageResource(R.drawable.point4);
+                    } else {
+                        pointIV.setImageResource(R.drawable.point1);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w("point error", "Failed to read value.", error.toException());
+                }
+            });
 
-
-            // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-            // RecyclerView recyclerView = (TextView)rootView.findViewById(R.id.recyclerView);
-
-            /*
-            RecyclerView recyclerView=(RecyclerView)rootView.findViewById(R.id.recyclerView);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext())) ;
-
-            // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-            MyRecyclerAdapter adapter = new MyRecyclerAdapter() ;
-            recyclerView.setAdapter(adapter) ;
-             */
 
             return rootView;
         }
