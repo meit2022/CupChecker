@@ -5,25 +5,25 @@ public class Data {
     String point;
     String date;
 
-    public String getDate() {
-        return date;
-    }
+    public Data(String point) {
+        this.point = point;
 
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getPoint() {
         return point;
     }
 
-    public void setPoint(String point) {
-        this.point = point;
+    public String getDate() {
+        return date;
     }
 
-    public Data(String point, String date) {
-        this.point = point;
-        this.date = date;
+    public void setPoint(String point){
+        this.point=point;
+    }
+
+    public void setDate(String date){
+        this.date=date;
     }
 
 }
