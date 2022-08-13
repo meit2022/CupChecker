@@ -61,21 +61,8 @@ public class FragmentMypage extends Fragment {
                 }
             });
 
-            ImageView pageIV=(ImageView)rootView.findViewById(R.id.mypage_user_img);
+            ImageView pointIV=(ImageView)rootView.findViewById(R.id.mypage_user_img);
 
-            int int_point = 0;
-
-            if (int_point==0) {
-                pageIV.setImageResource(R.drawable.point1);
-            } else if (500>=int_point && int_point>0) {
-                pageIV.setImageResource(R.drawable.point2);
-            } else if (1000>=int_point && int_point>500) {
-                pageIV.setImageResource(R.drawable.point3);
-            } else if ( int_point>1000) {
-                pageIV.setImageResource(R.drawable.point4);
-            } else {
-                pageIV.setImageResource(R.drawable.point1);
-            }
 
             mAuth=FirebaseAuth.getInstance();
             final FirebaseUser user=mAuth.getCurrentUser();
@@ -179,7 +166,33 @@ public class FragmentMypage extends Fragment {
                 }
             });
 
+            //점수에 따라 이미지 바꾸기
+            DatabaseReference point=dataRef.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount");
+            point.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String totalpoint=dataSnapshot.child("point").getValue().toString();
 
+                    int int_point = Integer.parseInt(totalpoint);
+
+                    if (int_point==0) {
+                        pointIV.setImageResource(R.drawable.point1);
+                    } else if (500>=int_point && int_point>0) {
+                        pointIV.setImageResource(R.drawable.point2);
+                    } else if (1000>=int_point && int_point>500) {
+                        pointIV.setImageResource(R.drawable.point3);
+                    } else if ( int_point>1000) {
+                        pointIV.setImageResource(R.drawable.point4);
+                    } else {
+                        pointIV.setImageResource(R.drawable.point1);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w("point error", "Failed to read value.", error.toException());
+                }
+            });
+            
             return rootView;
         }
 }
