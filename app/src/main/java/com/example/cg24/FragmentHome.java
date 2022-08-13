@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class FragmentHome extends Fragment {
     private FirebaseAuth mAuth;
@@ -72,6 +76,19 @@ public class FragmentHome extends Fragment {
                 pointIV.setImageResource(R.drawable.point1);
             }
 
+
+
+            // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+            // RecyclerView recyclerView = (TextView)rootView.findViewById(R.id.recyclerView);
+
+            /*
+            RecyclerView recyclerView=(RecyclerView)rootView.findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext())) ;
+
+            // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+            MyRecyclerAdapter adapter = new MyRecyclerAdapter() ;
+            recyclerView.setAdapter(adapter) ;
+             */
 
             return rootView;
         }
