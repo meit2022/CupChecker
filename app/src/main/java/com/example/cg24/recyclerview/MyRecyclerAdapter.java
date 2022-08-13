@@ -1,5 +1,6 @@
 package com.example.cg24.recyclerview;
 
+
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
@@ -69,3 +70,4 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     }
 }
+

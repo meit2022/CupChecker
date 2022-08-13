@@ -130,12 +130,37 @@ public class LoginActivity extends AppCompatActivity {
                         text ="no user";
                     }
 
+
+                    /*
+                    DatabaseReference ref_total_account=dataRef.child("CG24");
+                    ref_total_account.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            String current_uid=user.getUid();
+
+                            String nickname1=snapshot.child("UserAccount").getValue().toString();
+                            System.out.println(nickname1);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                     */
+
+
+                    // 로그인한 사용자 내용 update
                     DatabaseReference newRef=dataRef.child("CG24").child("UserAccount").child(text);
                     newRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             // 이미 로그인을 했을 경우
                             user = FirebaseAuth.getInstance().getCurrentUser();
+                            /*
                             UserAccount account=new UserAccount();
 
                             account.setIdToken(user.getUid());
@@ -143,6 +168,8 @@ public class LoginActivity extends AppCompatActivity {
                             account.setNickname(user.getDisplayName());
 
                             dataRef.child("CG24").child("UserAccount").child(user.getUid()).setValue(account);
+
+                             */
                         }
                         @Override
                         public void onCancelled(DatabaseError error) {

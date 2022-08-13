@@ -26,11 +26,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
+
 
 public class FragmentHome extends Fragment {
     private FirebaseAuth mAuth;
@@ -181,6 +183,19 @@ public class FragmentHome extends Fragment {
                 pointIV.setImageResource(R.drawable.point1);
             }
 
+
+
+            // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+            // RecyclerView recyclerView = (TextView)rootView.findViewById(R.id.recyclerView);
+
+            /*
+            RecyclerView recyclerView=(RecyclerView)rootView.findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext())) ;
+
+            // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+            MyRecyclerAdapter adapter = new MyRecyclerAdapter() ;
+            recyclerView.setAdapter(adapter) ;
+             */
 
             return rootView;
         }
