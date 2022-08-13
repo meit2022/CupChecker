@@ -1,11 +1,13 @@
 package com.example.cg24.recyclerview;
 
 public class Data {
+
     String point;
     String date;
 
     public Data(String point) {
         this.point = point;
+
     }
 
     public String getPoint() {
@@ -23,4 +25,5 @@ public class Data {
     public void setDate(String date){
         this.date=date;
     }
+
 }
