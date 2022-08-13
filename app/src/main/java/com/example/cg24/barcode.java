@@ -50,7 +50,7 @@ public class barcode extends AppCompatActivity  {
         iv.setRotation(90.0f);
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try{
-            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.CODE_39,9000,3600);
+            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.CODE_39,9900,3960);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             iv.setImageBitmap(bitmap);
