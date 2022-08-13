@@ -97,7 +97,7 @@ public class FragmentHome extends Fragment {
             hash_point.setText(point);
             hash_date=(TextView)rootView.findViewById(R.id.date);
             hash_date.setText(date);*/
-            
+
             //recyclerview list data 만들기
             mdataItems=new ArrayList<Data>();
             //recyclerview와 layout 연결
@@ -119,7 +119,11 @@ public class FragmentHome extends Fragment {
                    String count1;
                     count1 = dataSnapshot.child("count").getValue().toString();
                     Log.d(TAG, "count " + count1);
-                    if (count1 == null){
+                    if (count1 == "0"){
+                        String date = "";
+                        String point = "";
+                        mdataItems.add(new Data(point, date));
+                        mRecyclerAdapter.setData(mdataItems);
                         Log.w("null", "null");
                     }
                     else {
@@ -138,17 +142,11 @@ public class FragmentHome extends Fragment {
                                     String plz;
                                     plz = dataSnapshot.getValue().toString();
                                     Log.d(TAG, "plz " + plz);
-                                   // map2 = (Map<String, java.lang.Object>) dataSnapshot.child("datetime").getValue();
-                                    map2 = (Map<String, java.lang.Object>) dataSnapshot.getValue();
-                                    list2 = new ArrayList<String>(map2.keySet());
-                                    items2 = list2.stream().toArray(String[]::new);
-                                    Log.d(TAG, "Value is1111111 " + list2);
 
 
-                                    for (String item : list2) {
-                                        mdataItems.add(new Data(item,item));
-                                    }
-                                    /*mdataItems.add(new Data(plz));*/
+                                    String date = dataSnapshot.child("datetime").getValue().toString();
+                                    String point = dataSnapshot.child("prediction").getValue().toString();
+                                    mdataItems.add(new Data(point, date));
                                     mRecyclerAdapter.setData(mdataItems);
 
                                 }
