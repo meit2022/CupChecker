@@ -126,21 +126,24 @@ public class FragmentHome extends Fragment {
 
                         for (int i = 0; i < count2; i++) {
                             String i2 = Integer.toString(i);
-                            DatabaseReference Ref = databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child(i2);
+                            DatabaseReference Ref = databaseReference2.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child(i2).child("prediction");
                             Ref.addValueEventListener(new ValueEventListener() {
                                 @RequiresApi(api = Build.VERSION_CODES.N)
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    map2 = (Map<String, java.lang.Object>) dataSnapshot.getValue();
+                                    String plz;
+                                    plz = dataSnapshot.getValue().toString();
+                                    Log.d(TAG, "plz " + plz);
+                                    /*map2 = (Map<String, java.lang.Object>) dataSnapshot.getValue();
                                     list2 = new ArrayList<String>(map2.keySet());
-                                    items2 = list2.stream().toArray(String[]::new);
+                                    items2 = list2.toArray(new String[0]);
                                     Log.d(TAG, "Value is1111111 " + list2);
 
 
                                     for (String item : list2) {
                                         mdataItems.add(new Data(item));
-                                    }
-
+                                    }*/
+                                    mdataItems.add(new Data(plz));
                                     mRecyclerAdapter.setData(mdataItems);
 
                                 }

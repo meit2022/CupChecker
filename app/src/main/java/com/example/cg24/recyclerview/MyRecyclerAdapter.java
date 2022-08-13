@@ -37,7 +37,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     @NonNull
     @Override
     public MyRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_home, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
         return new ViewHolder(view);
     }
 
@@ -58,14 +58,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView point;
+        TextView date;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             point = (TextView) itemView.findViewById(R.id.point);
+            date = (TextView) itemView.findViewById(R.id.date);
         }
 
         void onBind(Data item){
             point.setText(item.getPoint());
+            date.setText(item.getDate());
         }
 
     }
