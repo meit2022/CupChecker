@@ -140,13 +140,16 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
 
+
                     DatabaseReference ref_total_account=dataRef.child("CG24");
                     ref_total_account.addValueEventListener(new ValueEventListener() {
+
 
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             user = FirebaseAuth.getInstance().getCurrentUser();
+
                             String current_uid=user.getUid();
 
                             String nickname_total=snapshot.child("ID1").getValue().toString();
@@ -186,7 +189,6 @@ public class LoginActivity extends AppCompatActivity {
                                 dataRef.child("CG24").child("ID1").child(user.getUid()).setValue(user.getUid());
                                 Log.d("nickname_2", "no user exists");
                             }
-
 
                         }
 
