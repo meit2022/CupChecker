@@ -165,11 +165,11 @@ public class FragmentHome extends Fragment {
 
                     if (int_point==0) {
                         pointIV.setImageResource(R.drawable.point1);
-                    } else if (500>=int_point && int_point>0) {
+                    } else if (600>=int_point && int_point>0) {
                         pointIV.setImageResource(R.drawable.point2);
-                    } else if (1000>=int_point && int_point>500) {
+                    } else if (2000>=int_point && int_point>600) {
                         pointIV.setImageResource(R.drawable.point3);
-                    } else if ( int_point>1000) {
+                    } else if ( int_point>2000) {
                         pointIV.setImageResource(R.drawable.point4);
                     } else {
                         pointIV.setImageResource(R.drawable.point1);
