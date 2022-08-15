@@ -45,7 +45,9 @@ public class FragmentMypage extends Fragment {
         private FirebaseAuth mAuth;
 
         private ImageView iv;
+        private ImageView iv2;
         private String text;
+        private String water;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,6 +119,27 @@ public class FragmentMypage extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(),barcode.class); //fragment라서 activity intent와는 다른 방식
                    // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                }
+            });
+
+            // water코드
+            water = "CG24GatherZipwatercode";
+
+            iv2 = (ImageView) rootView.findViewById(R.id.watercode);
+
+            try{
+                BitMatrix bitMatrix = multiFormatWriter.encode(water, BarcodeFormat.CODE_39,800,320);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                iv2.setImageBitmap(bitmap);
+            }catch (Exception e){}
+
+            iv2.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(),water.class); //fragment라서 activity intent와는 다른 방식
+                    // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                 }
             });
