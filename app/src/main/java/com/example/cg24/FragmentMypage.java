@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -162,6 +163,19 @@ public class FragmentMypage extends Fragment {
                         }
                     });
                     AlertDialog alertDialog = builder.create();
+                    
+                    alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface arg0) {
+
+                            // now.setTextColor(Color.parseColor("#ffffff"));
+
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#112c26"));
+                            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.DKGRAY);
+                        }
+                    });
+                    // 출처: https://beinone.tistory.com/1 [BeINone:티스토리]
+
                     alertDialog.show();
                 }
             });
