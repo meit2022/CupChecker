@@ -68,11 +68,11 @@ public class RegisterActivity extends AppCompatActivity {
                             mDatabaseRef.child("UserAccount").child(user.getUid()).setValue(account);
 
                             // 로그인한 사용자 CupCount update
-                            mDatabaseRef.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount").child("count").setValue(0);
-                            mDatabaseRef.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount").child("point").setValue(0);
+                            mDatabaseRef.child("UserAccount").child(user.getUid()).child("cup").child("CupCount").child("count").setValue(0);
+                            mDatabaseRef.child("UserAccount").child(user.getUid()).child("cup").child("CupCount").child("point").setValue(0);
 
                             // IDs에 내용 저장
-                            mDatabaseRef.child("CG24").child("ID1").child(user.getUid()).setValue(user.getUid());
+                            mDatabaseRef.child("ID1").child(user.getUid()).setValue(user.getUid());
 
                             Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
