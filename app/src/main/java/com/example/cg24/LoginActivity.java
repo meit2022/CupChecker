@@ -33,6 +33,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button btn_google;
@@ -98,7 +106,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (requestCode==RED_SIGN_GOOGLE) {
             GoogleSignInResult result=Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {   // 인증 결과가 성공적이면...
+            if (result.isSuccess()) {
+                // 인증 결과가 성공적이면...
                 // 구글 로그인 정보 담고 있다.
                 GoogleSignInAccount account = result.getSignInAccount();
                 resultLogin(account);
@@ -130,37 +139,71 @@ public class LoginActivity extends AppCompatActivity {
                         text ="no user";
                     }
 
-                    DatabaseReference newRef=dataRef.child("CG24").child("UserAccount").child(text);
-                    newRef.addValueEventListener(new ValueEventListener() {
+
+                    DatabaseReference ref_total_account=dataRef.child("CG24");
+                    ref_total_account.addValueEventListener(new ValueEventListener() {
+
                         @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // 이미 로그인을 했을 경우
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                             user = FirebaseAuth.getInstance().getCurrentUser();
-                            UserAccount account=new UserAccount();
+                            String current_uid=user.getUid();
 
-                            account.setIdToken(user.getUid());
-                            account.setEmailId(user.getEmail());
-                            account.setNickname(user.getDisplayName());
+                            String nickname_total=snapshot.child("ID1").getValue().toString();
+                            Log.d("nickname_total", nickname_total);
+                            System.out.println(nickname_total);
 
-                            dataRef.child("CG24").child("UserAccount").child(user.getUid()).setValue(account);
+                            // 2. ", "를 구분자로 문자열 split
+                            String nickname_final=nickname_total.substring(1, nickname_total.length()-1);
+                            String[] strArr = nickname_final.split(", |=");
+
+                            Log.d("Arrays", Arrays.toString(strArr));
+                            Log.d("strArr[0]", strArr[0]);
+
+                            String result_arr=new Boolean(Arrays.asList(strArr).contains(user.getUid())).toString();
+
+                            Log.d("Array contains", result_arr);
+                            Log.d("Array user id", user.getUid());
+
+                            System.out.println(Arrays.asList(strArr).contains(user.getUid()));
+
+                            if (result_arr=="true") {
+                                Log.d("nickname_2", "resutl true");
+                            } else {
+                                // 로그인한 사용자 로그인 정보 update
+                                user = FirebaseAuth.getInstance().getCurrentUser();
+                                UserAccount account=new UserAccount();
+                                account.setIdToken(user.getUid());
+                                account.setEmailId(user.getEmail());
+                                account.setNickname(user.getDisplayName());
+                                dataRef.child("CG24").child("UserAccount").child(user.getUid()).setValue(account);
+
+                                // 로그인한 사용자 CupCount update
+                                dataRef.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount").child("count").setValue(0);
+                                dataRef.child("CG24").child("UserAccount").child(user.getUid()).child("cup").child("CupCount").child("point").setValue(0);
+
+                                // IDs에 내용 저장
+                                dataRef.child("CG24").child("ID1").child(user.getUid()).setValue(user.getUid());
+                                Log.d("nickname_2", "no user exists");
+                            }
+
+
                         }
+
+
+
                         @Override
-                        public void onCancelled(DatabaseError error) {
-                            Log.w("find nickname", "Failed to read value.", error.toException());
+                        public void onCancelled(@NonNull DatabaseError error) {
                         }
                     });
-
-
                 } else {
                     Toast.makeText(LoginActivity.this, "login fail", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
     public void onConnectionFailed(@NonNull ConnectionResult connectionResutl) {
-
     }
 
     public void signOut2() {
