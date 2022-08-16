@@ -28,9 +28,9 @@ public class water extends AppCompatActivity  {
         setContentView(R.layout.water);
 
 
-        water = "cg24waterpumpcode";
+        water = "CG24GatherZipwatercode";
 
-        // QR 코드
+        // water바코드
         ImageView iv = findViewById(R.id.watercode);
         iv.setRotation(90.0f);
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
