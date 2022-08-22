@@ -1,9 +1,7 @@
-tree d4c6193742fb246fac32746cdec8c628e97a7864
-parent b9cb0dfbd8bfae3db9a8002d31de507aa12cff26
-parent e91ece40cb5da1a036df4810173e6e32700e682a
-author Kyungmin Lee <64300626+kyungminlee-12@users.noreply.github.com> 1660548724 +0900
-committer GitHub <noreply@github.com> 1660548724 +0900
+tree 834c217d32359e72411cf409013d22eb1b257b70
+parent c9c8c9c89703a1b3d5471e427fc22b2daf02f0d7
+author Jueunkim429 <jueunkim429@gmail.com> 1661151869 +0900
+committer Jueunkim429 <jueunkim429@gmail.com> 1661151869 +0900
 
-Merge pull request #23 from meit2022/feat/point_change
+[Delete] google-services.json from history
 
-[feat] dialog 창 버튼 색 변경
