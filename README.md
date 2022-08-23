@@ -1,11 +1,12 @@
 # 🌱 Cup Checker
 ## 🏆 제2회 MEIT대회 금상
-![image](https://user-images.githubusercontent.com/64300626/185676331-bf9a972b-504b-478f-90ac-413f19837851.png)
-![image](https://user-images.githubusercontent.com/64300626/185676348-7ba72115-bca9-49fe-883c-95c09d5e995e.png)
-![image](https://user-images.githubusercontent.com/64300626/185676359-f58e678a-4b67-4719-90a6-66c9b16a2166.png)
-![image](https://user-images.githubusercontent.com/64300626/185676386-578faf1a-78e6-4582-9aeb-65dca30ecc9a.png)
-![image](https://user-images.githubusercontent.com/64300626/185676487-1dfc903b-9524-4541-95f8-66d41bf92847.png)
-![image](https://user-images.githubusercontent.com/64300626/185676542-cd6a53c7-e57c-41f1-b318-c3f6c2f41572.png)
+![슬라이드17](https://user-images.githubusercontent.com/92364973/186048885-9d17f861-9345-4fef-a54d-0f6a5fc85f57.PNG)
+![슬라이드18](https://user-images.githubusercontent.com/92364973/186048888-306f32ba-f6f0-4f8a-b886-68145fd91a97.PNG)
+![슬라이드19](https://user-images.githubusercontent.com/92364973/186048893-3dcc911c-3282-4814-9492-475984977a9d.PNG)
+![슬라이드20](https://user-images.githubusercontent.com/92364973/186048898-ca0c9a39-b649-40ad-a883-97d950154b48.PNG)
+![슬라이드21](https://user-images.githubusercontent.com/92364973/186048906-f2c6f6d8-4307-4e4e-962b-3bb42e1a81f2.PNG)
+![슬라이드22](https://user-images.githubusercontent.com/92364973/186048912-2b007b22-5339-4d48-bf82-b5da95dced38.PNG)
+
 
 ## 🙆‍♀ Team Member 
 |Jueun Kim<br/>([@Jueunkim429](https://github.com/Jueunkim429))|Kyungmin Lee<br/>([@kyungminlee-12](https://github.com/kyungminlee-12))|
